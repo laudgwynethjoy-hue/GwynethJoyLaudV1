@@ -16,6 +16,7 @@
             --deep-purple: #160d2c;
             --white: #fffaf5;
             --muted: #d0c6e2;
+            --success: #4ade80;
         }
 
         * {
@@ -28,14 +29,7 @@
             min-height: 100vh;
             padding: 55px 20px;
             color: var(--white);
-            background: linear-gradient(
-                -45deg,
-                #10091f,
-                #281344,
-                #160d2c,
-                #35204e,
-                #17102c
-            );
+            background: linear-gradient(-45deg, #10091f, #281344, #160d2c, #35204e, #17102c);
             background-size: 400% 400%;
             animation: gradientFlow 18s ease infinite;
             overflow-x: hidden;
@@ -85,17 +79,13 @@
         }
 
         @keyframes float {
-            from {
-                transform: translate(0, 0) scale(1);
-            }
-            to {
-                transform: translate(35px, -40px) scale(1.15);
-            }
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(35px, -40px) scale(1.15); }
         }
 
         .container {
             width: 100%;
-            max-width: 850px;
+            max-width: 1000px;
             margin: auto;
             position: relative;
             z-index: 1;
@@ -128,13 +118,7 @@
             font-size: clamp(2.2rem, 6vw, 3.5rem);
             margin: 0;
             line-height: 1.2;
-            background: linear-gradient(
-                110deg,
-                #fff8e8,
-                #e8c77d,
-                #fff0bd,
-                #d6a74e
-            );
+            background: linear-gradient(110deg, #fff8e8, #e8c77d, #fff0bd, #d6a74e);
             background-size: 200% auto;
             color: var(--gold-light);
             background-clip: text;
@@ -144,9 +128,7 @@
         }
 
         @keyframes goldShimmer {
-            to {
-                background-position: 200% center;
-            }
+            to { background-position: 200% center; }
         }
 
         .subtitle {
@@ -164,45 +146,27 @@
         }
 
         .panel {
-            background: linear-gradient(
-                135deg,
-                rgba(255, 255, 255, 0.10),
-                rgba(255, 255, 255, 0.035)
-            );
-            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.035));
+            border: 1px solid rgba(255,255,255,0.14);
             border-radius: 22px;
             padding: 26px;
             margin-bottom: 22px;
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.18);
             animation: fadeUp 0.8s ease both;
             transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
         .panel:hover {
-            border-color: rgba(232, 199, 125, 0.4);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
-            transform: translateY(-3px);
-        }
-
-        .panel:nth-of-type(2) {
-            animation-delay: 0.15s;
-        }
-
-        .panel:nth-of-type(3) {
-            animation-delay: 0.3s;
+            border-color: rgba(232,199,125,0.4);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+            transform: translateY(-2px);
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-heading {
@@ -221,12 +185,8 @@
             height: 46px;
             border-radius: 14px;
             font-size: 21px;
-            background: linear-gradient(
-                135deg,
-                rgba(232, 199, 125, 0.22),
-                rgba(139, 92, 246, 0.2)
-            );
-            border: 1px solid rgba(232, 199, 125, 0.25);
+            background: linear-gradient(135deg, rgba(232,199,125,0.22), rgba(139,92,246,0.2));
+            border: 1px solid rgba(232,199,125,0.25);
         }
 
         h2 {
@@ -242,7 +202,7 @@
         }
 
         button {
-            border: 1px solid rgba(255, 240, 189, 0.55);
+            border: 1px solid rgba(255,240,189,0.55);
             border-radius: 12px;
             padding: 12px 19px;
             margin: 5px 5px 5px 0;
@@ -252,13 +212,13 @@
             font-weight: 700;
             font-size: 13px;
             background: linear-gradient(135deg, #fff0bd, #d8ad5b);
-            box-shadow: 0 5px 18px rgba(205, 164, 82, 0.15);
+            box-shadow: 0 5px 18px rgba(205,164,82,0.15);
             transition: all 0.25s ease;
         }
 
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(232, 199, 125, 0.3);
+            box-shadow: 0 8px 25px rgba(232,199,125,0.3);
             filter: brightness(1.08);
         }
 
@@ -266,16 +226,27 @@
             transform: scale(0.97);
         }
 
+        button.danger {
+            background: linear-gradient(135deg, #ffb8c5, #e87991);
+            border-color: #ffb8c5;
+        }
+
+        button.secondary {
+            background: rgba(139,92,246,0.25);
+            color: white;
+            border-color: rgba(196,181,253,0.5);
+        }
+
         input {
             width: 100%;
             max-width: 360px;
             padding: 13px 15px;
             margin: 5px 0 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255,255,255,0.18);
             border-radius: 12px;
             outline: none;
             color: white;
-            background: rgba(15, 8, 30, 0.4);
+            background: rgba(15,8,30,0.4);
             font-family: 'DM Sans', sans-serif;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
@@ -286,63 +257,68 @@
 
         input:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(232, 199, 125, 0.12);
+            box-shadow: 0 0 0 3px rgba(232,199,125,0.12);
         }
 
-        #result,
-        #greeting,
-        #studentList {
-            color: var(--white);
+        label {
+            display: block;
+            font-size: 12px;
+            color: var(--gold-light);
+            margin: 8px 0 2px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px 18px;
+        }
+
+        .form-grid input {
+            max-width: none;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--gold-light);
             overflow-wrap: anywhere;
         }
 
-        #result {
-            margin-top: 18px;
-            padding: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            background: rgba(13, 7, 27, 0.25);
-            line-height: 1.5;
-        }
-
-        #result:empty {
+        .message:empty {
             display: none;
         }
 
-        #greeting {
-            color: var(--gold-light);
-            font-weight: 600;
-            margin-top: 15px;
-        }
-
-        #studentList {
+        .student-list {
             margin-top: 18px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 14px;
         }
 
-        #studentList:empty {
-            display: none;
-        }
-
         .student-card {
             padding: 18px;
             border-radius: 15px;
-            border: 1px solid rgba(232, 199, 125, 0.2);
-            background: linear-gradient(
-                145deg,
-                rgba(255, 255, 255, 0.075),
-                rgba(20, 10, 38, 0.35)
-            );
+            border: 1px solid rgba(232,199,125,0.2);
+            background: linear-gradient(145deg, rgba(255,255,255,0.075), rgba(20,10,38,0.35));
             transition: all 0.3s ease;
             animation: fadeUp 0.45s ease both;
+            overflow-wrap: anywhere;
         }
 
         .student-card:hover {
-            border-color: rgba(232, 199, 125, 0.65);
-            background: rgba(232, 199, 125, 0.08);
-            transform: translateY(-4px);
+            border-color: rgba(232,199,125,0.65);
+            background: rgba(232,199,125,0.08);
+            transform: translateY(-3px);
+        }
+
+        .student-card h3 {
+            color: var(--gold-light);
+            margin: 0 0 12px;
+            font-size: 16px;
         }
 
         .student-card p {
@@ -352,14 +328,109 @@
             color: #e6dff0;
         }
 
-        .student-card b,
-        #result b {
+        .student-card b {
             color: var(--gold-light);
         }
 
         .empty-message {
             color: var(--muted);
             font-size: 13px;
+        }
+
+        /* SUCCESS NOTIFICATION */
+
+        .operation-result {
+            display: none;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 15px;
+            background: rgba(22, 163, 74, 0.16);
+            border: 1px solid #4ade80;
+            animation: fadeUp 0.4s ease;
+        }
+
+        .operation-result.show {
+            display: block;
+        }
+
+        .operation-result h3 {
+            color: #86efac;
+            margin: 0 0 8px;
+            font-size: 19px;
+        }
+
+        .operation-result p {
+            color: #dcfce7;
+            margin: 5px 0;
+            font-size: 13px;
+        }
+
+        .success-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        /* TRANSACTION HISTORY */
+
+        .activity-item {
+            background: rgba(255,255,255,0.06);
+            border-left: 4px solid #4ade80;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .activity-item h4 {
+            color: #86efac;
+            margin: 0 0 6px;
+        }
+
+        .activity-item p {
+            color: #eee4f8;
+            font-size: 12px;
+            margin: 4px 0;
+        }
+
+        .activity-time {
+            color: #d0c6e2 !important;
+            font-size: 11px !important;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            background: rgba(5,2,15,0.8);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 450px;
+            padding: 25px;
+            background: #211336;
+            border: 1px solid rgba(232,199,125,0.4);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+        }
+
+        .modal-close {
+            float: right;
+            background: transparent;
+            color: white;
+            border: none;
+            box-shadow: none;
+            font-size: 20px;
+            padding: 3px 8px;
         }
 
         .footer {
@@ -380,10 +451,6 @@
                 border-radius: 18px;
             }
 
-            .section-heading {
-                align-items: flex-start;
-            }
-
             button {
                 width: 100%;
                 margin: 6px 0;
@@ -393,28 +460,29 @@
                 max-width: none;
             }
 
-            #studentList {
+            .form-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
+            .full-width {
+                grid-column: auto;
+            }
+
+            .student-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
+
     <div class="ambient orb-one"></div>
     <div class="ambient orb-two"></div>
     <div class="ambient orb-three"></div>
 
     <main class="container">
+
         <header class="header">
             <span class="eyebrow">✦ Academic Portal ✦</span>
             <h1>Student API Interface</h1>
@@ -425,6 +493,7 @@
             <div class="divider"></div>
         </header>
 
+        <!-- STUDENT INFORMATION -->
         <section class="panel">
             <div class="section-heading">
                 <div class="section-icon">🎓</div>
@@ -434,13 +503,11 @@
                 </div>
             </div>
 
-            <button onclick="loadStudent()">
-                ✦ Load Student Information
-            </button>
-
-            <div id="result"></div>
+            <button onclick="loadStudent()">✦ Load Student Information</button>
+            <div id="result" class="message"></div>
         </section>
 
+        <!-- GREETING API -->
         <section class="panel">
             <div class="section-heading">
                 <div class="section-icon">💌</div>
@@ -450,151 +517,837 @@
                 </div>
             </div>
 
-            <input
-                type="text"
-                id="nameInput"
-                placeholder="Enter your first name"
-            >
-
+            <input type="text" id="nameInput" placeholder="Enter your first name">
             <button onclick="sayHello()">Say Hello ✨</button>
-
-            <p id="greeting"></p>
+            <p id="greeting" class="message"></p>
         </section>
 
-        <section class="panel">
+        <!-- CRUD MANAGEMENT -->
+        <section class="panel" id="crudSection">
+
             <div class="section-heading">
-                <div class="section-icon">📚</div>
+                <div class="section-icon">📝</div>
                 <div>
-                    <h2>Students from Database</h2>
-                    <p class="section-description">
-                        Browse student records stored in SQLite
-                    </p>
+                    <h2>Student CRUD Management</h2>
+                    <p class="section-description">Add, edit, and delete your student records</p>
                 </div>
             </div>
 
-            <button onclick="loadStudents()">Load Students</button>
+            <form id="studentForm">
 
-            <div id="studentList"></div>
+                <input type="hidden" id="recordId">
+
+                <div class="form-grid">
+
+                    <div>
+                        <label for="student_id">Student ID</label>
+                        <input type="text" id="student_id" placeholder="e.g. 2026-00123" required>
+                    </div>
+
+                    <div>
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter full name" required>
+                    </div>
+
+                    <div>
+                        <label for="program">Program</label>
+                        <input type="text" id="program" placeholder="e.g. BSIT" required>
+                    </div>
+
+                    <div>
+                        <label for="year">Year</label>
+                        <input type="number" id="year" min="1" required>
+                    </div>
+
+                    <div class="full-width">
+                        <label for="section">Section</label>
+                        <input type="text" id="section" placeholder="e.g. A" required>
+                    </div>
+
+                </div>
+
+                <button type="submit" id="saveButton">＋ Add Student</button>
+                <button type="button" class="secondary" onclick="resetForm()">Clear Form</button>
+
+            </form>
+
+            <p id="crudMessage" class="message"></p>
+
+            <!-- SUCCESS NOTIFICATION -->
+            <div id="operationResult" class="operation-result">
+
+                <div class="success-icon">✅</div>
+
+                <h3 id="operationTitle">Operation Successful!</h3>
+
+                <p id="operationDescription"></p>
+
+                <p id="operationDate"></p>
+
+            </div>
+
+        </section>
+
+        <!-- MY RECORDS -->
+        <section class="panel">
+
+            <div class="section-heading">
+                <div class="section-icon">📚</div>
+                <div>
+                    <h2>My Records</h2>
+                    <p class="section-description">Student records stored in your own SQLite database</p>
+                </div>
+            </div>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by student name or ID..."
+                oninput="renderMyRecords()"
+            >
+
+            <button onclick="loadStudents()">↻ Refresh My Records</button>
+
+            <div id="studentList" class="student-list"></div>
+
+            <p id="myRecordsMessage" class="message"></p>
+
+        </section>
+
+        <!-- TRANSACTION HISTORY -->
+        <section class="panel">
+
+            <div class="section-heading">
+                <div class="section-icon">📋</div>
+                <div>
+                    <h2>Transaction History</h2>
+                    <p class="section-description">Successfully completed student database operations</p>
+                </div>
+            </div>
+
+            <div id="activityHistory">
+                <p class="empty-message">No transactions recorded yet.</p>
+            </div>
+
+        </section>
+
+        <!-- CLASSMATE RECORDS -->
+        <section class="panel">
+
+            <div class="section-heading">
+                <div class="section-icon">🌐</div>
+                <div>
+                    <h2>Classmate's Records</h2>
+                    <p class="section-description">Read-only student records retrieved from another student's API</p>
+                </div>
+            </div>
+
+            <label for="classmateAPI">Classmate's Render API URL</label>
+
+            <input
+                type="url"
+                id="classmateAPI"
+                placeholder="https://classmate-app.onrender.com/api/students"
+            >
+
+            <button onclick="loadClassmateRecords()">Retrieve Classmate Records</button>
+
+            <div id="classmateList" class="student-list"></div>
+
+            <p id="classmateMessage" class="message"></p>
+
         </section>
 
         <footer class="footer">
             DESIGNED WITH ELEGANCE · POWERED BY FLASK & SQLITE
         </footer>
+
     </main>
 
+    <!-- VIEW DETAILS MODAL -->
+    <div class="modal" id="detailsModal" onclick="closeModalOutside(event)">
+
+        <div class="modal-content">
+
+            <button class="modal-close" onclick="closeDetails()">✕</button>
+
+            <h2>Student Details</h2>
+
+            <div id="detailsContent"></div>
+
+        </div>
+
+    </div>
+
     <script>
-        function loadStudent() {
-            fetch('/student')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch student data');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const result = document.getElementById('result');
-                    result.innerHTML = '';
 
-                    const details = [
-                        ['Student ID', data.student_id],
-                        ['Name', data.name],
-                        ['Program', data.program],
-                        ['Year', data.year],
-                        ['Section', data.section]
-                    ];
+        let studentsCache = [];
+        let classmateCache = [];
+        let activityHistory = [];
 
-                    details.forEach(([label, value]) => {
-                        const p = document.createElement('p');
-                        const b = document.createElement('b');
+        const studentForm = document.getElementById("studentForm");
 
-                        b.textContent = label + ': ';
-                        p.appendChild(b);
-                        p.appendChild(document.createTextNode(String(value)));
-                        result.appendChild(p);
-                    });
-                })
-                .catch(error => {
-                    document.getElementById('result').textContent =
-                        'Unable to retrieve student data.';
-                    console.error(error);
+        // LOAD PERSONAL STUDENT INFORMATION
+        async function loadStudent() {
+
+            const result = document.getElementById("result");
+            result.textContent = "Loading student information...";
+
+            try {
+
+                const response = await fetch("/student");
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "Unable to load student");
+                }
+
+                result.innerHTML = "";
+
+                Object.entries(data).forEach(([label, value]) => {
+
+                    const p = document.createElement("p");
+                    const b = document.createElement("b");
+
+                    b.textContent = label.replaceAll("_", " ") + ": ";
+
+                    p.append(b, document.createTextNode(String(value)));
+
+                    result.appendChild(p);
+
                 });
+
+            } catch (error) {
+
+                result.textContent = error.message;
+
+            }
+
         }
 
-        function sayHello() {
-            const name = document.getElementById('nameInput').value.trim();
+        // GREETING API
+        async function sayHello() {
 
-            fetch('/hello?name=' + encodeURIComponent(name))
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to retrieve greeting');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    document.getElementById('greeting').textContent =
-                        data.message;
-                })
-                .catch(error => {
-                    document.getElementById('greeting').textContent =
-                        'Unable to retrieve greeting.';
-                    console.error(error);
-                });
+            const name = document.getElementById("nameInput").value.trim();
+            const greeting = document.getElementById("greeting");
+
+            try {
+
+                const response = await fetch(
+                    "/hello?name=" + encodeURIComponent(name)
+                );
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "Greeting failed");
+                }
+
+                greeting.textContent = data.message;
+
+            } catch (error) {
+
+                greeting.textContent = error.message;
+
+            }
+
         }
 
-        function loadStudents() {
-            const studentList = document.getElementById('studentList');
-            studentList.textContent = 'Loading student records...';
+        // ADD AND UPDATE STUDENT
+        studentForm.addEventListener("submit", async function(event) {
 
-            fetch('/students')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load students');
+            event.preventDefault();
+
+            const id = document.getElementById("recordId").value;
+
+            const studentData = {
+
+                student_id: document.getElementById("student_id").value.trim(),
+
+                name: document.getElementById("name").value.trim(),
+
+                program: document.getElementById("program").value.trim(),
+
+                year: Number(document.getElementById("year").value),
+
+                section: document.getElementById("section").value.trim()
+
+            };
+
+            if (
+                !studentData.student_id ||
+                !studentData.name ||
+                !studentData.program ||
+                !Number.isInteger(studentData.year) ||
+                studentData.year < 1 ||
+                !studentData.section
+            ) {
+
+                showMessage("crudMessage", "Please complete all fields correctly.");
+
+                return;
+
+            }
+
+            const action = id ? "UPDATE" : "ADD";
+
+            try {
+
+                const response = await fetch(
+
+                    id ? `/api/students/${id}` : "/api/students",
+
+                    {
+
+                        method: id ? "PUT" : "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify(studentData)
+
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    studentList.innerHTML = '';
 
-                    if (!Array.isArray(data) || data.length === 0) {
-                        studentList.innerHTML =
-                            '<p class="empty-message">No student records found.</p>';
-                        return;
-                    }
+                );
 
-                    data.forEach(student => {
-                        const card = document.createElement('div');
-                        card.className = 'student-card';
+                const data = await response.json();
 
-                        const details = [
-                            ['Student ID', student.student_id],
-                            ['Name', student.name],
-                            ['Program', student.program],
-                            ['Year', student.year],
-                            ['Section', student.section]
-                        ];
+                if (!response.ok) {
 
-                        details.forEach(([label, value]) => {
-                            const p = document.createElement('p');
-                            const b = document.createElement('b');
+                    throw new Error(data.error || "Operation failed.");
 
-                            b.textContent = label + ': ';
-                            p.appendChild(b);
-                            p.appendChild(
-                                document.createTextNode(String(value ?? ''))
-                            );
+                }
 
-                            card.appendChild(p);
-                        });
+                showOperationSuccess(action, studentData);
 
-                        studentList.appendChild(card);
-                    });
-                })
-                .catch(error => {
-                    studentList.textContent =
-                        'Unable to retrieve student records. Check your Flask server and database.';
-                    console.error(error);
-                });
+                showMessage("crudMessage", data.message || "Operation completed successfully!");
+
+                resetForm();
+
+                await loadStudents();
+
+            } catch (error) {
+
+                showMessage("crudMessage", error.message);
+
+            }
+
+        });
+
+        // DISPLAY SUCCESSFUL OPERATIONS
+        function showOperationSuccess(action, student) {
+
+            const result = document.getElementById("operationResult");
+
+            const title = document.getElementById("operationTitle");
+
+            const description = document.getElementById("operationDescription");
+
+            const date = document.getElementById("operationDate");
+
+            const messages = {
+
+                ADD: "STUDENT SUCCESSFULLY ADDED!",
+
+                UPDATE: "STUDENT SUCCESSFULLY UPDATED!",
+
+                DELETE: "STUDENT SUCCESSFULLY DELETED!"
+
+            };
+
+            title.textContent = "✓ " + messages[action];
+
+            description.textContent =
+                "Student Name: " + student.name +
+                " | Student ID: " + student.student_id;
+
+            const now = new Date();
+
+            const formattedDate = now.toLocaleString();
+
+            date.textContent = "Date and Time: " + formattedDate;
+
+            result.classList.remove("show");
+
+            void result.offsetWidth;
+
+            result.classList.add("show");
+
+            activityHistory.unshift({
+
+                action: action,
+
+                name: student.name,
+
+                student_id: student.student_id,
+
+                date: formattedDate
+
+            });
+
+            renderActivityHistory();
+
+            result.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "center"
+
+            });
+
         }
+
+        // TRANSACTION HISTORY
+        function renderActivityHistory() {
+
+            const history = document.getElementById("activityHistory");
+
+            history.innerHTML = "";
+
+            if (activityHistory.length === 0) {
+
+                history.innerHTML =
+                    '<p class="empty-message">No transactions recorded yet.</p>';
+
+                return;
+
+            }
+
+            activityHistory.forEach(item => {
+
+                const card = document.createElement("div");
+
+                card.className = "activity-item";
+
+                const heading = document.createElement("h4");
+
+                heading.textContent =
+                    "✓ STUDENT " + item.action + " SUCCESSFULLY";
+
+                const name = document.createElement("p");
+
+                name.textContent = "Name: " + item.name;
+
+                const id = document.createElement("p");
+
+                id.textContent = "Student ID: " + item.student_id;
+
+                const time = document.createElement("p");
+
+                time.className = "activity-time";
+
+                time.textContent = item.date;
+
+                card.append(heading, name, id, time);
+
+                history.appendChild(card);
+
+            });
+
+        }
+
+        // LOAD ALL OWN RECORDS
+        async function loadStudents() {
+
+            const list = document.getElementById("studentList");
+
+            const message = document.getElementById("myRecordsMessage");
+
+            list.textContent = "Loading student records...";
+
+            message.textContent = "";
+
+            try {
+
+                const response = await fetch("/students");
+
+                const data = await response.json();
+
+                if (!response.ok) {
+
+                    throw new Error("Unable to retrieve records");
+
+                }
+
+                studentsCache = data;
+
+                renderMyRecords();
+
+            } catch (error) {
+
+                list.textContent = "";
+
+                message.textContent = error.message;
+
+            }
+
+        }
+
+        // DISPLAY AND SEARCH OWN RECORDS
+        function renderMyRecords() {
+
+            const list = document.getElementById("studentList");
+
+            const search = document.getElementById("searchInput").value.toLowerCase();
+
+            list.innerHTML = "";
+
+            const filtered = studentsCache.filter(student =>
+
+                String(student.name || "").toLowerCase().includes(search) ||
+
+                String(student.student_id || "").toLowerCase().includes(search)
+
+            );
+
+            if (filtered.length === 0) {
+
+                list.innerHTML =
+                    '<p class="empty-message">No matching student records found.</p>';
+
+                return;
+
+            }
+
+            filtered.forEach(student => {
+
+                const card = document.createElement("div");
+
+                card.className = "student-card";
+
+                const title = document.createElement("h3");
+
+                title.textContent = student.name;
+
+                card.appendChild(title);
+
+                appendDetail(card, "Student ID", student.student_id);
+
+                appendDetail(card, "Program", student.program);
+
+                appendDetail(card, "Year", student.year);
+
+                appendDetail(card, "Section", student.section);
+
+                const detailsButton = document.createElement("button");
+
+                detailsButton.textContent = "View Details";
+
+                detailsButton.onclick = () => viewOwnDetails(student.id);
+
+                const editButton = document.createElement("button");
+
+                editButton.textContent = "Edit";
+
+                editButton.className = "secondary";
+
+                editButton.onclick = () => editStudent(student);
+
+                const deleteButton = document.createElement("button");
+
+                deleteButton.textContent = "Delete";
+
+                deleteButton.className = "danger";
+
+                deleteButton.onclick = () => deleteStudent(student.id);
+
+                card.append(detailsButton, editButton, deleteButton);
+
+                list.appendChild(card);
+
+            });
+
+        }
+
+        // EDIT STUDENT
+        function editStudent(student) {
+
+            document.getElementById("recordId").value = student.id;
+
+            document.getElementById("student_id").value = student.student_id;
+
+            document.getElementById("name").value = student.name;
+
+            document.getElementById("program").value = student.program;
+
+            document.getElementById("year").value = student.year;
+
+            document.getElementById("section").value = student.section;
+
+            document.getElementById("saveButton").textContent = "Update Student";
+
+            document.getElementById("crudSection").scrollIntoView({
+
+                behavior: "smooth"
+
+            });
+
+        }
+
+        // DELETE STUDENT
+        async function deleteStudent(id) {
+
+            const student = studentsCache.find(item => item.id === id);
+
+            if (!student) {
+
+                showMessage("crudMessage", "Student record not found.");
+
+                return;
+
+            }
+
+            if (!confirm("Are you sure you want to delete " + student.name + "?")) {
+
+                return;
+
+            }
+
+            try {
+
+                const response = await fetch(`/api/students/${id}`, {
+
+                    method: "DELETE"
+
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+
+                    throw new Error(data.error || "Unable to delete student.");
+
+                }
+
+                showOperationSuccess("DELETE", student);
+
+                showMessage("crudMessage", data.message);
+
+                await loadStudents();
+
+            } catch (error) {
+
+                showMessage("crudMessage", error.message);
+
+            }
+
+        }
+
+        // RESET FORM
+        function resetForm() {
+
+            studentForm.reset();
+
+            document.getElementById("recordId").value = "";
+
+            document.getElementById("saveButton").textContent = "＋ Add Student";
+
+        }
+
+        // LOAD CLASSMATE RECORDS
+        async function loadClassmateRecords() {
+
+            const url = document.getElementById("classmateAPI").value.trim();
+
+            const list = document.getElementById("classmateList");
+
+            const message = document.getElementById("classmateMessage");
+
+            list.innerHTML = "";
+
+            message.textContent = "";
+
+            if (!url) {
+
+                message.textContent = "Please enter your classmate's API URL.";
+
+                return;
+
+            }
+
+            try {
+
+                const response = await fetch(url);
+
+                const data = await response.json();
+
+                if (!response.ok) {
+
+                    throw new Error("Unable to retrieve classmate records.");
+
+                }
+
+                if (!Array.isArray(data)) {
+
+                    throw new Error("The classmate API did not return a student list.");
+
+                }
+
+                classmateCache = data;
+
+                renderClassmateRecords();
+
+            } catch (error) {
+
+                message.textContent =
+                    error.message.includes("Failed to fetch")
+                    ? "Unable to connect. Check the API URL, Render status, and CORS settings."
+                    : error.message;
+
+            }
+
+        }
+
+        // DISPLAY CLASSMATE RECORDS
+        function renderClassmateRecords() {
+
+            const list = document.getElementById("classmateList");
+
+            list.innerHTML = "";
+
+            if (classmateCache.length === 0) {
+
+                list.innerHTML =
+                    '<p class="empty-message">No classmate records found.</p>';
+
+                return;
+
+            }
+
+            classmateCache.forEach((student, index) => {
+
+                const card = document.createElement("div");
+
+                card.className = "student-card";
+
+                const title = document.createElement("h3");
+
+                title.textContent = student.name || "Student";
+
+                card.appendChild(title);
+
+                appendDetail(card, "Student ID", student.student_id);
+
+                appendDetail(card, "Program", student.program);
+
+                appendDetail(card, "Year", student.year);
+
+                appendDetail(card, "Section", student.section);
+
+                const viewButton = document.createElement("button");
+
+                viewButton.textContent = "View Details";
+
+                viewButton.onclick = () => viewClassmateDetails(index);
+
+                card.appendChild(viewButton);
+
+                list.appendChild(card);
+
+            });
+
+        }
+
+        // VIEW OWN DETAILS
+        function viewOwnDetails(id) {
+
+            const student = studentsCache.find(item => item.id === id);
+
+            if (student) {
+
+                showDetails(student);
+
+            }
+
+        }
+
+        // VIEW CLASSMATE DETAILS
+        function viewClassmateDetails(index) {
+
+            const student = classmateCache[index];
+
+            if (student) {
+
+                showDetails(student);
+
+            }
+
+        }
+
+        // SHOW DETAILS MODAL
+        function showDetails(student) {
+
+            const content = document.getElementById("detailsContent");
+
+            content.innerHTML = "";
+
+            Object.entries(student).forEach(([key, value]) => {
+
+                const p = document.createElement("p");
+
+                const b = document.createElement("b");
+
+                b.textContent = key.replaceAll("_", " ") + ": ";
+
+                p.append(b, document.createTextNode(String(value ?? "")));
+
+                content.appendChild(p);
+
+            });
+
+            document.getElementById("detailsModal").style.display = "flex";
+
+        }
+
+        // CLOSE MODAL
+        function closeDetails() {
+
+            document.getElementById("detailsModal").style.display = "none";
+
+        }
+
+        function closeModalOutside(event) {
+
+            if (event.target.id === "detailsModal") {
+
+                closeDetails();
+
+            }
+
+        }
+
+        // SAFE STUDENT DETAIL
+        function appendDetail(card, label, value) {
+
+            const p = document.createElement("p");
+
+            const b = document.createElement("b");
+
+            b.textContent = label + ": ";
+
+            p.append(b, document.createTextNode(String(value ?? "")));
+
+            card.appendChild(p);
+
+        }
+
+        // DISPLAY MESSAGES
+        function showMessage(elementId, message) {
+
+            document.getElementById(elementId).textContent = message;
+
+        }
+
+        // LOAD RECORDS WHEN PAGE OPENS
+        document.addEventListener("DOMContentLoaded", function() {
+
+            loadStudents();
+
+        });
+
     </script>
+
 </body>
 </html>
