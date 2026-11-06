@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request, render_template
 app = Flask(__name__)
 
 # REPLACE THIS WITH YOUR PARTNER'S ACTUAL RENDER URL
-PARTNER_API_URL = "https://CLASSMATE-APP.onrender.com/api/students"
+PARTNER_API_URL = "https://ladoing-kc-jane-marie.onrender.com/students"
 
 
 def get_db_connection():
