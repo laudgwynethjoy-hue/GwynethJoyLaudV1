@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student API Interface</title>
+    <title>Student API Integration Dashboard - Lab 9</title>
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
@@ -85,7 +84,7 @@
 
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: auto;
             position: relative;
             z-index: 1;
@@ -237,6 +236,12 @@
             border-color: rgba(196,181,253,0.5);
         }
 
+        button.accent {
+            background: linear-gradient(135deg, #a7f3d0, #34d399);
+            border-color: #a7f3d0;
+            color: #064e3b;
+        }
+
         input {
             width: 100%;
             max-width: 360px;
@@ -295,7 +300,7 @@
         .student-list {
             margin-top: 18px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 14px;
         }
 
@@ -317,19 +322,48 @@
 
         .student-card h3 {
             color: var(--gold-light);
-            margin: 0 0 12px;
+            margin: 0 0 8px;
             font-size: 16px;
         }
 
         .student-card p {
             font-size: 13px;
             line-height: 1.6;
-            margin: 7px 0;
+            margin: 6px 0;
             color: #e6dff0;
         }
 
         .student-card b {
             color: var(--gold-light);
+        }
+
+        /* SOURCE BADGES */
+        .source-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-local {
+            background: rgba(255, 255, 255, 0.15);
+            color: #f3f4f6;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .badge-imported {
+            background: rgba(52, 211, 153, 0.2);
+            color: #a7f3d0;
+            border: 1px solid rgba(52, 211, 153, 0.4);
+        }
+
+        .badge-external {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fde68a;
+            border: 1px solid rgba(251, 191, 36, 0.4);
         }
 
         .empty-message {
@@ -338,7 +372,6 @@
         }
 
         /* SUCCESS NOTIFICATION */
-
         .operation-result {
             display: none;
             padding: 20px;
@@ -371,7 +404,6 @@
         }
 
         /* TRANSACTION HISTORY */
-
         .activity-item {
             background: rgba(255,255,255,0.06);
             border-left: 4px solid #4ade80;
@@ -397,7 +429,6 @@
         }
 
         /* MODAL */
-
         .modal {
             display: none;
             position: fixed;
@@ -484,11 +515,11 @@
     <main class="container">
 
         <header class="header">
-            <span class="eyebrow">✦ Academic Portal ✦</span>
+            <span class="eyebrow">✦ System Integration Portal ✦</span>
             <h1>Student API Interface</h1>
             <p class="subtitle">
-                A refined space for student information,<br>
-                greetings, and academic records.
+                Laboratory Activity 9: View, Save, Send, and Retrieve Data<br>
+                Integrated System-to-System Architecture
             </p>
             <div class="divider"></div>
         </header>
@@ -498,8 +529,8 @@
             <div class="section-heading">
                 <div class="section-icon">🎓</div>
                 <div>
-                    <h2>Student Information</h2>
-                    <p class="section-description">View your student profile</p>
+                    <h2>Student Profile</h2>
+                    <p class="section-description">View your local system profile</p>
                 </div>
             </div>
 
@@ -541,7 +572,7 @@
 
                     <div>
                         <label for="student_id">Student ID</label>
-                        <input type="text" id="student_id" placeholder="e.g. 2026-00123" required>
+                        <input type="text" id="student_id" placeholder="e.g. 24-00146" required>
                     </div>
 
                     <div>
@@ -561,7 +592,7 @@
 
                     <div class="full-width">
                         <label for="section">Section</label>
-                        <input type="text" id="section" placeholder="e.g. A" required>
+                        <input type="text" id="section" placeholder="e.g. B" required>
                     </div>
 
                 </div>
@@ -594,8 +625,8 @@
             <div class="section-heading">
                 <div class="section-icon">📚</div>
                 <div>
-                    <h2>My Records</h2>
-                    <p class="section-description">Student records stored in your own SQLite database</p>
+                    <h2>My Records (Integration Dashboard)</h2>
+                    <p class="section-description">Records stored in your local SQLite database (Local, Classmate API, External API)</p>
                 </div>
             </div>
 
@@ -614,6 +645,26 @@
 
         </section>
 
+        <!-- CLASSMATE RECORDS -->
+        <section class="panel">
+
+            <div class="section-heading">
+                <div class="section-icon">🌐</div>
+                <div>
+                    <h2>Classmate's Records & Exchange</h2>
+                    <p class="section-description">Retrieve remote records, import them to your database, or send a practice record</p>
+                </div>
+            </div>
+
+            <button onclick="loadClassmateRecords()">📥 Retrieve Partner Records</button>
+            <button class="secondary" onclick="sendRecordToPartner()">🚀 Send Practice Record to Partner</button>
+
+            <div id="classmateList" class="student-list"></div>
+
+            <p id="classmateMessage" class="message"></p>
+
+        </section>
+
         <!-- TRANSACTION HISTORY -->
         <section class="panel">
 
@@ -628,33 +679,6 @@
             <div id="activityHistory">
                 <p class="empty-message">No transactions recorded yet.</p>
             </div>
-
-        </section>
-
-        <!-- CLASSMATE RECORDS -->
-        <section class="panel">
-
-            <div class="section-heading">
-                <div class="section-icon">🌐</div>
-                <div>
-                    <h2>Classmate's Records</h2>
-                    <p class="section-description">Read-only student records retrieved from another student's API</p>
-                </div>
-            </div>
-
-            <label for="classmateAPI">Classmate's Render API URL</label>
-
-            <input
-                type="url"
-                id="classmateAPI"
-                placeholder="https://classmate-app.onrender.com/api/students"
-            >
-
-            <button onclick="loadClassmateRecords()">Retrieve Classmate Records</button>
-
-            <div id="classmateList" class="student-list"></div>
-
-            <p id="classmateMessage" class="message"></p>
 
         </section>
 
@@ -853,11 +877,13 @@
 
                 UPDATE: "STUDENT SUCCESSFULLY UPDATED!",
 
-                DELETE: "STUDENT SUCCESSFULLY DELETED!"
+                DELETE: "STUDENT SUCCESSFULLY DELETED!",
+
+                IMPORT: "STUDENT RECORD IMPORTED!"
 
             };
 
-            title.textContent = "✓ " + messages[action];
+            title.textContent = "✓ " + (messages[action] || "OPERATION SUCCESSFUL");
 
             description.textContent =
                 "Student Name: " + student.name +
@@ -948,7 +974,7 @@
 
         }
 
-        // LOAD ALL OWN RECORDS
+        // LOAD ALL OWN RECORDS (STEP 7: Local / API Students)
         async function loadStudents() {
 
             const list = document.getElementById("studentList");
@@ -985,7 +1011,7 @@
 
         }
 
-        // DISPLAY AND SEARCH OWN RECORDS
+        // DISPLAY AND SEARCH OWN RECORDS (WITH SOURCE BADGES)
         function renderMyRecords() {
 
             const list = document.getElementById("studentList");
@@ -1016,6 +1042,16 @@
                 const card = document.createElement("div");
 
                 card.className = "student-card";
+
+                // Source Badge
+                const sourceBadge = document.createElement("span");
+                const source = student.source || "Local";
+                sourceBadge.className = "source-badge " + (
+                    source === "Local" ? "badge-local" :
+                    (source === "Classmate API" ? "badge-imported" : "badge-external")
+                );
+                sourceBadge.textContent = "Source: " + source;
+                card.appendChild(sourceBadge);
 
                 const title = document.createElement("h3");
 
@@ -1146,10 +1182,8 @@
 
         }
 
-        // LOAD CLASSMATE RECORDS
+        // STEP 3 & 4: RETRIEVE CLASSMATE RECORDS VIA FLASK PROXY (/partner-records)
         async function loadClassmateRecords() {
-
-            const url = document.getElementById("classmateAPI").value.trim();
 
             const list = document.getElementById("classmateList");
 
@@ -1157,50 +1191,41 @@
 
             list.innerHTML = "";
 
-            message.textContent = "";
-
-            if (!url) {
-
-                message.textContent = "Please enter your classmate's API URL.";
-
-                return;
-
-            }
+            message.textContent = "Fetching classmate records from partner API...";
 
             try {
 
-                const response = await fetch(url);
+                const response = await fetch("/partner-records");
 
                 const data = await response.json();
 
                 if (!response.ok) {
 
-                    throw new Error("Unable to retrieve classmate records.");
+                    throw new Error(data.error || "Unable to retrieve partner data");
 
                 }
 
                 if (!Array.isArray(data)) {
 
-                    throw new Error("The classmate API did not return a student list.");
+                    throw new Error("Partner API did not return a valid list.");
 
                 }
 
                 classmateCache = data;
 
+                message.textContent = "";
+
                 renderClassmateRecords();
 
             } catch (error) {
 
-                message.textContent =
-                    error.message.includes("Failed to fetch")
-                    ? "Unable to connect. Check the API URL, Render status, and CORS settings."
-                    : error.message;
+                message.textContent = error.message;
 
             }
 
         }
 
-        // DISPLAY CLASSMATE RECORDS
+        // DISPLAY CLASSMATE RECORDS (WITH SAVE BUTTON - STEP 4 & 6)
         function renderClassmateRecords() {
 
             const list = document.getElementById("classmateList");
@@ -1210,7 +1235,7 @@
             if (classmateCache.length === 0) {
 
                 list.innerHTML =
-                    '<p class="empty-message">No classmate records found.</p>';
+                    '<p class="empty-message">No partner records loaded yet. Click "Retrieve Partner Records".</p>';
 
                 return;
 
@@ -1242,11 +1267,96 @@
 
                 viewButton.onclick = () => viewClassmateDetails(index);
 
-                card.appendChild(viewButton);
+                // Step 6: Save to My Database Button
+                const saveButton = document.createElement("button");
+
+                saveButton.textContent = "✦ Save to My Database";
+
+                saveButton.className = "accent";
+
+                saveButton.onclick = () => savePartnerRecord(student);
+
+                card.append(viewButton, saveButton);
 
                 list.appendChild(card);
 
             });
+
+        }
+
+        // STEP 6: SAVE PARTNER RECORD TO LOCAL DATABASE (/import-student)
+        async function savePartnerRecord(student) {
+
+            const message = document.getElementById("classmateMessage");
+
+            try {
+
+                const response = await fetch("/import-student", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(student)
+
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+
+                    throw new Error(data.error || "Failed to save remote record.");
+
+                }
+
+                showOperationSuccess("IMPORT", student);
+
+                alert(data.message || "Remote record saved to your database!");
+
+                await loadStudents(); // Refresh My Records view
+
+            } catch (error) {
+
+                message.textContent = error.message;
+
+            }
+
+        }
+
+        // STEP 9: SEND A PRACTICE RECORD TO PARTNER'S POST API (/send-to-partner)
+        async function sendRecordToPartner() {
+
+            const message = document.getElementById("classmateMessage");
+
+            message.textContent = "Sending practice record to partner API...";
+
+            try {
+
+                const response = await fetch("/send-to-partner", {
+
+                    method: "POST"
+
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+
+                    throw new Error(data.error || "Failed to send record to partner.");
+
+                }
+
+                alert("Successfully sent practice record! Partner Status Code: " + data.status_code);
+
+                message.textContent = "Practice record successfully transmitted to partner API.";
+
+            } catch (error) {
+
+                message.textContent = error.message;
+
+            }
 
         }
 

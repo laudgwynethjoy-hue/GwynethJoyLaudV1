@@ -1,8 +1,11 @@
-
 import sqlite3
+import requests
 from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
+
+# REPLACE THIS WITH YOUR PARTNER'S ACTUAL RENDER URL
+PARTNER_API_URL = "https://CLASSMATE-APP.onrender.com/api/students"
 
 
 def get_db_connection():
@@ -54,9 +57,7 @@ def get_skills():
 @app.route("/students", methods=["GET"])
 def get_students():
     conn = get_db_connection()
-    students = conn.execute(
-        "SELECT * FROM students"
-    ).fetchall()
+    students = conn.execute("SELECT * FROM students").fetchall()
     conn.close()
 
     return jsonify([dict(student) for student in students])
@@ -118,7 +119,7 @@ def validate_student_data(data):
     return None
 
 
-# CREATE - ADD STUDENT
+# CREATE - ADD STUDENT (Step 8: Updated to handle source column)
 @app.route("/api/students", methods=["POST"])
 def add_student():
     data = request.get_json(silent=True)
@@ -127,19 +128,23 @@ def add_student():
     if error:
         return jsonify({"error": error}), 400
 
+    # Default to 'External API' if source is not passed explicitly
+    source = data.get("source", "External API")
+
     try:
         conn = get_db_connection()
 
         cursor = conn.execute(
             """INSERT INTO students
-            (student_id, name, program, year, section)
-            VALUES (?, ?, ?, ?, ?)""",
+            (student_id, name, program, year, section, source)
+            VALUES (?, ?, ?, ?, ?, ?)""",
             (
                 data["student_id"].strip(),
                 data["name"].strip(),
                 data["program"].strip(),
                 int(data["year"]),
-                data["section"].strip()
+                data["section"].strip(),
+                source
             )
         )
 
@@ -259,6 +264,68 @@ def api_students():
     conn.close()
 
     return jsonify([dict(student) for student in students])
+
+
+# STEP 3: SERVER-SIDE ENDPOINT TO RETRIEVE PARTNER'S API
+@app.route("/partner-records", methods=["GET"])
+def partner_records():
+    try:
+        response = requests.get(PARTNER_API_URL, timeout=15)
+        response.raise_for_status()
+        return jsonify(response.json())
+    except requests.RequestException:
+        return jsonify({"error": "Unable to retrieve partner data"}), 502
+
+
+# STEP 5: IMPORT A PARTNER RECORD INTO LOCAL DATABASE
+@app.route("/import-student", methods=["POST"])
+def import_student():
+    data = request.get_json(silent=True)
+    if not data:
+        return jsonify({"error": "Invalid data"}), 400
+
+    try:
+        conn = get_db_connection()
+        conn.execute(
+            """INSERT INTO students
+            (student_id, name, program, year, section, source)
+            VALUES (?, ?, ?, ?, ?, ?)""",
+            (
+                data["student_id"],
+                data["name"],
+                data["program"],
+                int(data["year"]),
+                data["section"],
+                "Classmate API"
+            )
+        )
+        conn.commit()
+        conn.close()
+        return jsonify({"message": "Remote record saved successfully"}), 201
+    except sqlite3.Error as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# STEP 9: SEND A PRACTICE RECORD TO PARTNER'S POST ENDPOINT
+@app.route("/send-to-partner", methods=["POST"])
+def send_to_partner():
+    practice_record = {
+        "student_id": "EXT-001",
+        "name": "Sample Exchange Record",
+        "program": "BSIT",
+        "year": 1,
+        "section": "A",
+        "source": "Partner API"
+    }
+
+    try:
+        res = requests.post(PARTNER_API_URL, json=practice_record, timeout=15)
+        return jsonify({
+            "status_code": res.status_code,
+            "response": res.text
+        })
+    except requests.RequestException as e:
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
